@@ -45,7 +45,7 @@ public class LoginServlet extends HttpServlet {
 				rd = sc.getRequestDispatcher("/customer.jsp");
 				break;
 			default:
-				rd = sc.getRequestDispatcher("/index.jsp");
+				rd = sc.getRequestDispatcher("/login.jsp");
 		}
 		rd.forward(request, response);
 	}
