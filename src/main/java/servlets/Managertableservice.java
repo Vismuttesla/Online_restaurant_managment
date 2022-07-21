@@ -10,13 +10,12 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-@WebServlet("/Managertable")
+@WebServlet("/managertable")
 public class Managertableservice extends HttpServlet {
 
     @Override// we use it for updating
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String id = request.getParameter("action");
-
         String number = request.getParameter("number");
         String facilities = request.getParameter("facilities");
         String type = request.getParameter("type");
@@ -24,26 +23,28 @@ public class Managertableservice extends HttpServlet {
         String available = request.getParameter("available");
         String s = "update _table_ set ";
         boolean t = false;
-
-        if (number != "") {
-            s = s + "number=" + number;
+        String v="";
+        if (number !="") {
+            s = s +v+ "number=" + number;
             t = true;
+            v=",";
         }
-        if (facilities != "") {
-            s = s + ",facilities=" + facilities;
+        if (facilities !="") {
+            s = s +v+ "facilities='" + facilities+"'";
             t = true;
+            v=",";
         }
         if (type != "") {
-            s = s + ",type=" + type;
-            t = true;
+            s = s + v+"type='" + type+"'";
+            t = true; v=",";
         }
-        if (special_price != "") {
-            s = s + ",special_price=" + special_price;
-            t = true;
+        if (special_price !="") {
+            s = s +v+ "special_price=" + special_price;
+            t = true; v=",";
         }
-        if (available != "") {
-            s = s + ",available=" + available;
-            t = true;
+        if (available !="") {
+            s = s +v+ "available=" + available;
+            t = true; v=",";
         }
 
         s = s + " where id=" + id;
@@ -51,8 +52,9 @@ public class Managertableservice extends HttpServlet {
         if (t) {
             update(s);
         }
-        RequestDispatcher rd = request.getRequestDispatcher("manager/tablemenu.jsp");
-        rd.forward(request, response);
+        response.sendRedirect("Man_tablemenu.jsp");
+//        RequestDispatcher rd = request.getRequestDispatcher("Man_tablemenu.jsp");
+//        rd.forward(request, response);
 
     }
 
@@ -70,7 +72,7 @@ public class Managertableservice extends HttpServlet {
 
         System.out.println(s);
         post(s);
-        RequestDispatcher rd = request.getRequestDispatcher("manager/tablemenu.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("Man_tablemenu.jsp");
         rd.forward(request, response);
     }
 

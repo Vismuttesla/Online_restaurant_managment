@@ -5,7 +5,8 @@ import java.sql.*;
 public class DBConnection {
 	private final String dbUrl = "jdbc:postgresql://localhost/orm";
 	private final String dbUser = "postgres";
-	private final String dbPassword = "0123";
+	private final String dbPassword = "postgres";
+
 	private Connection connection;
 
 	public DBConnection() {
@@ -51,11 +52,14 @@ public class DBConnection {
 	public void insert(String tableName, String fields, String values) {
 		try {
 			Statement statement = this.connection.createStatement();
-			statement.executeUpdate("INSERT INTO " + tableName + " (" + fields + ") VALUES (" + values + ");");
-			statement.close();
-			this.connection.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
+			         statement.executeUpdate("INSERT INTO " + tableName + " (" + fields + ") VALUES (" + values + ");");
+			         statement.close();
+			         this.connection.close();
 		}
-	}
-}
+
+
+		catch (SQLException e) {
+			e.printStackTrace();
+	      	}
+	 	    }
+                              }
