@@ -3,7 +3,7 @@ package servlets;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import services.dbCon;
+import services.DBCon;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -79,7 +79,7 @@ public class Managertableservice extends HttpServlet {
 
     public void update(String query) {
         try {
-            dbCon db = new dbCon();
+            DBCon db = new DBCon();
             Connection con = db.connect_data_base();
             Statement statement = con.createStatement();
 
@@ -93,7 +93,7 @@ public class Managertableservice extends HttpServlet {
 
     public void post(String query) {
         try {
-            dbCon db = new dbCon();
+            DBCon db = new DBCon();
             Connection con = db.connect_data_base();
             Statement statement = con.createStatement();
 

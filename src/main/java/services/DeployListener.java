@@ -3,6 +3,12 @@ package services;
 import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.annotation.WebListener;
 import jakarta.servlet.ServletContextEvent;
+
+import javax.script.ScriptEngine;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,13 +17,43 @@ public class DeployListener implements ServletContextListener {
 
 	@Override
 	public void contextInitialized(ServletContextEvent event) {
-		createDBTables();
+	  String query="Select * from data";
+
+			if (!get(query)) {createDBTables();
+				System.out.println("yasadi");}
+
+
 	}
+
+	public boolean get (String query)  {
+		ResultSet rs=null;
+		boolean t=false;
+		try {
+			DBCon db = new DBCon();
+			Connection con = db.connect_data_base();
+			Statement statement = con.createStatement();
+			rs=statement.executeQuery(query);
+			rs.next(); t=true;
+		}
+		catch (Exception e)
+		{
+			System.out.println(e);
+		}
+
+		return t;
+	}
+
 
 	private void createDBTables() {
 		List<String> sqlQueries = new ArrayList<>();
 
-		sqlQueries.add("CREATE TABLE _user_ (" +
+		sqlQueries.add("CREATE TABLE data ("
+
+				+"exist boolean );");
+
+
+
+				sqlQueries.add("CREATE TABLE _user_ (" +
 				"ID int GENERATED ALWAYS AS IDENTITY, " +
 				"First_Name varchar(255), " +
 				"Last_Name varchar(255), " +
@@ -86,8 +122,12 @@ public class DeployListener implements ServletContextListener {
 			dbConnection.execute(sqlQuery);
 		}
 
+		dbConnection.insert("data","exist","true");
+
 		 dbConnection.insert("_user_", "first_name, last_name, age, male, role, e_mail, phone_number, password",
-				"'Ahror', 'Ne'matov', 25, true, 'MANAGER', 'john.w@gmail.com', '+998995219568', '123'");
+				"'Ahror', 'Nematov', 25, true, 'MANAGER', 'john.w@gmail.com', '+998995219568', '123'");
+
+
 
 		dbConnection.insert(
 				"_user_",

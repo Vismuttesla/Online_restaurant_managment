@@ -5,7 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import services.dbCon;
+import services.DBCon;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -44,7 +44,7 @@ public class Staff extends HttpServlet {
            }
     public void update(String query) {
         try {
-            dbCon db = new dbCon();
+            DBCon db = new DBCon();
             Connection con = db.connect_data_base();
             Statement statement = con.createStatement();
 
@@ -59,7 +59,7 @@ public class Staff extends HttpServlet {
     public String get (String query) throws Exception,SQLException {
         ResultSet rs=null;
         try {
-            dbCon db = new dbCon();
+            DBCon db = new DBCon();
             Connection con = db.connect_data_base();
             Statement statement = con.createStatement();
             rs=statement.executeQuery(query);
