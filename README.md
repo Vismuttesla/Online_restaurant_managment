@@ -1,6 +1,7 @@
 # Online_restaurant_managment                                                 
 1.first configure your tomcat  version 10.0.22 or higher than it                 
 2.create new database named orm in your postgres
+
 3.to access manager's menu enter phone number : +998995219568  password: 123
 
 4.to access Customer's menu enter phone number : +998996059496  password: 123
