@@ -13,7 +13,9 @@
 7. to access staff's menu enter phone number : +998941789608  password: 123
   
 with Manager's menu you can add new  tables and  new meals or change specification of table and meal 
+
  with Customer's menu you can order meals and tables
-with Staff's menu you can see which customer order  which table and which meals    
+ 
+with Staff's menu you can see which customer order  which table and which meals.    
      Moreover you can finish order with done button on Staff's 
     
